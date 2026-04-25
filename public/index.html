@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=20260425a" />
   </head>
   <body>
     <div class="ambient ambient-red"></div>
@@ -39,125 +39,190 @@
           <a href="#kontakt">Kontakt</a>
         </nav>
 
-        <a id="headerLaunchLink" class="header-cta" href="#dostep">Wejdz do panelu</a>
+        <div class="topbar-cta-group">
+          <span class="topbar-meta">Private beta • AI operations workspace</span>
+          <a id="headerLaunchLink" class="header-cta" href="#dostep">Wejdz do panelu</a>
+        </div>
       </header>
 
-      <main>
+      <main class="marketing-main">
         <section id="start" class="hero-layout">
           <article class="hero-card hero-copy">
             <p class="eyebrow">AI workspace klasy premium dla prawa, biznesu, researchu i operacji</p>
-            <h1>Nexus Informator to prywatne centrum operacyjne AI do rozmow, decyzji, dokumentow i pracy wykonawczej.</h1>
+            <div class="hero-announcement">
+              <span>Nowy interfejs operacyjny</span>
+              <strong>Chat, pliki, live, obrazy i integracje w jednym narzedziu</strong>
+            </div>
+            <h1>Zbudowane jak produkt. Prowadzi jak operator. Dziala jak prywatne studio AI.</h1>
             <p class="hero-text">
-              Platforma laczy formalny onboarding, prawna warstwe informacyjna,
-              uporzadkowana pamiec rozmow, warsztat plikow i linkow, live news,
-              builder projektow, studio mediow oraz integracje serwerowe. To przestrzen,
-              ktora ma wygladac i dzialac jak narzedzie klasy premium, a nie zwykly czat.
+              Nexus Informator laczy onboarding, rozmowe, dokumenty, live desk, media i integracje
+              w jednym prywatnym interfejsie. Zamiast zbioru osobnych narzedzi dostajesz jeden
+              operacyjny system pracy: od pierwszego pytania, przez analizę, do gotowego wykonania.
             </p>
 
             <div class="hero-actions">
-              <a class="primary-link" href="#dostep">Uruchom dostep premium</a>
-              <a class="secondary-link" href="#kontakt">Porozmawiaj z administratorem</a>
+              <a class="primary-link" href="#dostep">Uruchom workspace</a>
+              <a class="secondary-link" href="#mozliwosci">Zobacz jak pracuje</a>
             </div>
 
-            <div class="source-card">
-              <strong>Pozycjonowanie uslugi</strong>
-              <span>private AI workspace | formal onboarding | secure operations</span>
-              <p>
-                System jest projektowany dla osob i zespolow, ktore potrzebuja jednej przestrzeni do
-                decyzji, dokumentow, analizy aktualnych wydarzen, korespondencji i pracy nad wdrozeniami.
-              </p>
-            </div>
-
-            <div class="hero-metrics">
+            <div class="hero-signal-row">
               <article>
-                <strong>Pamiec projektowa</strong>
+                <strong>Jedno centrum sterowania</strong>
+                <span>agent, pliki, media, live, integracje i admin bez skakania po osobnych produktach</span>
+              </article>
+              <article>
+                <strong>Product-grade UX</strong>
+                <span>ciemny interfejs, czytelna hierarchia i przeplyw pracy blizszy Replit niz zwyklemu chatbotowi</span>
+              </article>
+            </div>
+
+            <div class="hero-metrics metrics-animate">
+              <article class="metric-card">
+                <strong><span class="counter" data-target="1">0</span>1. Pamiec projektowa</strong>
                 <span>Watek, kontekst i historia rozmow zostaja w jednym miejscu zamiast rozpadac sie na osobne sesje.</span>
               </article>
-              <article>
-                <strong>Dokumenty i materialy</strong>
+              <article class="metric-card">
+                <strong><span class="counter" data-target="2">0</span>2. Dokumenty i materialy</strong>
                 <span>PDF, DOCX, audio, linki WWW i YouTube trafiaja do jednej warstwy analitycznej z kontrola ryzyka.</span>
               </article>
-              <article>
-                <strong>Tryb wykonawczy</strong>
+              <article class="metric-card">
+                <strong><span class="counter" data-target="3">0</span>3. Tryb wykonawczy</strong>
                 <span>Asystent ma wskazywac bledy, proponowac poprawki i prowadzic zadanie do stanu gotowego.</span>
               </article>
-              <article>
-                <strong>Kontrola premium</strong>
+              <article class="metric-card">
+                <strong><span class="counter" data-target="4">0</span>4. Kontrola premium</strong>
                 <span>Warstwa wizualna, onboarding i copy zostaly ustawione pod narzedzie premium, nie pod landing bez tresci.</span>
               </article>
             </div>
           </article>
 
           <article class="hero-card hero-visual">
-            <div class="visual-banner">
-              <div class="banner-copy">
-                <span class="kicker">Night control room</span>
-                <h2>Jedno miejsce do rozmowy, kodu, projektow, Gmaila i live monitoringu.</h2>
-                <p>
-                  Asystent ma pomagac rzeczowo, ale bez slepego potwierdzania. Ma odroznia fakty od hipotez,
-                  uczciwie sygnalizowac niepewnosc, pilnowac bezpieczenstwa i prowadzic uzytkownika dalej,
-                  gdy sprawa wymaga decyzji operacyjnej, prawnej albo technicznej.
-                </p>
+            <div class="product-preview-shell">
+              <div class="product-preview-topbar">
+                <div class="preview-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="preview-tabs">
+                  <span class="active">workspace.nexus</span>
+                  <span>agent.log</span>
+                  <span>deploy.plan</span>
+                </div>
               </div>
-              <div class="banner-orb"></div>
-            </div>
 
-            <div class="mosaic-grid">
-              <article class="mosaic-card card-code">
-                <span>Code</span>
-                <strong>React, Python, PHP, Java, C#, SQL i wiecej</strong>
-              </article>
-              <article class="mosaic-card card-image">
-                <span>Image</span>
-                <strong>Grafiki z promptu i szybkie warianty kreatywne</strong>
-              </article>
-              <article class="mosaic-card card-video">
-                <span>Video</span>
-                <strong>Joby filmowe z opisu sceny, ruchu kamery i klimatu</strong>
-              </article>
-              <article class="mosaic-card card-voice">
-                <span>Voice</span>
-                <strong>Dyktafon, czytanie odpowiedzi i zgoda na glos niestandardowy</strong>
-              </article>
-              <article class="mosaic-card card-code">
-                <span>Workbench</span>
-                <strong>Analiza dokumentow, transkrypcje, protokoly i pisma z plikow oraz linkow</strong>
-              </article>
+              <div class="product-preview-body">
+                <aside class="preview-rail">
+                  <span class="preview-rail-tag active">Agent</span>
+                  <span class="preview-rail-tag">Files</span>
+                  <span class="preview-rail-tag">Live</span>
+                  <span class="preview-rail-tag">Image</span>
+                  <span class="preview-rail-tag live-badge" title="Live status: online"><span class="live-dot"></span> 1FA</span>
+                </aside>
+
+                <div class="preview-stage">
+                  <div class="preview-stage-head">
+                    <div>
+                      <span class="kicker">Night control room</span>
+                      <h2>Jedno miejsce do rozmowy, kodu, projektow, Gmaila i live monitoringu.</h2>
+                    </div>
+                    <div class="preview-status-card live-status">
+                      <strong>Workspace status</strong>
+                      <span><span class="status-pulse"></span> Agent online • Secure memory • Live desk ready</span>
+                    </div>
+                  </div>
+
+                  <div class="preview-flow-grid">
+                    <article class="preview-card preview-card-primary">
+                      <span>Active task</span>
+                      <strong>Przygotuj plan wdrozenia, odfiltruj ryzyka i zdecyduj, czy uruchomic workbench.</strong>
+                    </article>
+                    <article class="preview-card">
+                      <span>Live context</span>
+                      <strong>Polska, swiat, biznes i technologia jako warstwa RSS pod rozmowa.</strong>
+                    </article>
+                    <article class="preview-card">
+                      <span>File ops</span>
+                      <strong>PDF, DOCX, audio, YouTube i linki bez wychodzenia z projektu.</strong>
+                    </article>
+                    <article class="preview-card">
+                      <span>Media</span>
+                      <strong>Obraz, wideo i glos uruchamiane z jednego interfejsu roboczego.</strong>
+                    </article>
+                  </div>
+
+                  <div class="preview-terminal">
+                    <div class="preview-terminal-line dim">&gt; agent.route("analiza + decyzja + wykonanie")</div>
+                    <div class="preview-terminal-line">✓ Uzytkownik opisal cel. AI proponuje plan, sprawdza materialy i kieruje dalej.</div>
+                    <div class="preview-terminal-line">✓ Workbench gotowy na pliki, live desk gotowy na aktualnosci, media gotowe na akcje.</div>
+                    <div class="preview-terminal-line accent">→ To nie jest kolejny chat. To interface do prowadzenia calego zadania.</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </article>
         </section>
 
         <section id="mozliwosci" class="feature-strip">
-          <article class="glass-card">
-            <h2>Chat, ktory uklada wiedze</h2>
+          <article class="glass-card feature-card feature-card-accent">
+            <span class="feature-kicker">Workspace memory</span>
+            <h2>Chat, ktory nie zaczyna od zera</h2>
             <p>Rozmowy sa trwale zapisane w backendzie, wiec po powrocie mozesz otworzyc wczesniejsze watki bez chaosu.</p>
+            <strong>Historia, kontekst, follow-up i prowadzenie zadania w jednym miejscu.</strong>
           </article>
-          <article class="glass-card">
+          <article class="glass-card feature-card">
+            <span class="feature-kicker">Control layer</span>
             <h2>Prompt pod Twoj styl</h2>
             <p>Uzytkownik moze zmienic prompt, ton, poziom sceptycyzmu i tryb automatycznego poprawiania bledow.</p>
+            <strong>Nie tylko wyglad premium, ale tez realna kontrola nad zachowaniem agenta.</strong>
           </article>
-          <article class="glass-card">
+          <article class="glass-card feature-card">
+            <span class="feature-kicker">Execution stack</span>
             <h2>Studio dla tworcow i profesjonalistow</h2>
             <p>Oprocz rozmowy masz dedykowane widoki dla kodu, dokumentow, obrazu, wideo, glosu, integracji i panelu administracyjnego.</p>
+            <strong>Jeden produkt do rozmowy, researchu, produkcji i wdrozenia.</strong>
           </article>
         </section>
 
-        <section id="dostep" class="access-section">
-          <div class="section-head">
-            <p class="eyebrow">Dostep</p>
-            <h2>Formalny onboarding, szybkie wejscie i kontrola zgód w jednym miejscu.</h2>
-            <p>
-              Formularze porzadkuja proces dostepu, podstawe prawna i dane uzytkownika bez rozpraszania.
-              Mozesz wygenerowac dane konta, zweryfikowac zgody i przejsc do panelu operacyjnego w sposob
-              bardziej zblizony do produktu premium niz do zwyklej strony logowania.
-            </p>
+        <section id="dostep" class="access-section reveal-section">
+          <div class="section-head section-head-split">
+            <div>
+              <p class="eyebrow">Dostep</p>
+              <h2>Onboarding zaprojektowany jak pierwszy ekran produktu, nie jak zwykly formularz.</h2>
+              <p>
+                Rejestracja i logowanie maja prowadzic przez wejscie do workspace krok po kroku:
+                tozsamosc, zgody, dostep i szybki powrot do panelu. Dolna czesc strony przestaje byc
+                dokumentowym dodatkiem i zaczyna wygladac jak realna warstwa produktu.
+              </p>
+            </div>
+            <aside class="section-note onboarding-note">
+              <strong>Flow wejscia</strong>
+              <span>Identity setup • zgody prawne • secure access • start workspace</span>
+            </aside>
           </div>
 
-          <div class="access-grid">
-            <section class="glass-card access-card">
-              <div class="card-top">
-                <p class="eyebrow">Nowe konto</p>
-                <h3>Start od podstaw</h3>
+          <div class="access-grid onboarding-grid">
+            <section class="glass-card access-card access-card-register">
+              <div class="card-top card-top-split">
+                <div>
+                  <p class="eyebrow">Step 01</p>
+                  <h3>Skonfiguruj konto i wejdz do workspace</h3>
+                  <p id="onboarding-role-copy">Pelny profil, wymagane zgody i dane dostepowe zebrane w jednym, spokojnym przeplywie.</p>
+                </div>
+                <div class="onboarding-role-selector">
+                  <label class="role-radio">
+                    <input type="radio" name="userRole" value="legal" />
+                    <span>Prawnik</span>
+                  </label>
+                  <label class="role-radio">
+                    <input type="radio" name="userRole" value="tech" />
+                    <span>Tech</span>
+                  </label>
+                  <label class="role-radio" >
+                    <input type="radio" name="userRole" value="business" />
+                    <span>Business</span>
+                  </label>
+                </div>
               </div>
 
               <div id="registerMessage" class="form-message" aria-live="polite"></div>
@@ -212,10 +277,10 @@
                 </label>
 
                 <div class="consent-box">
-                  <h4>Przed wyslaniem formularza zapoznaj sie z podstawa prawna.</h4>
+                  <h4>Przed aktywacja workspace przejdz przez warstwe zgod i podstaw prawnych.</h4>
                   <p>
-                    Dokumenty nizej maja wersje audio. Po odsluchu mozesz
-                    zaznaczyc odpowiednie oswiadczenia i przejsc dalej.
+                    Dokumenty nizej maja wersje audio i sekcje referencyjne. Po odsluchu lub przeczytaniu
+                    zaznaczasz oswiadczenia i od razu uruchamiasz wejscie do produktu.
                   </p>
                 </div>
 
@@ -248,43 +313,117 @@
               </form>
             </section>
 
-            <section class="glass-card access-card">
-              <div class="card-top">
-                <p class="eyebrow">Powrot do panelu</p>
-                <h3>Szybkie wejscie</h3>
-              </div>
+            <div class="onboarding-stack">
+              <article class="glass-card onboarding-card">
+                <p class="eyebrow">Product onboarding</p>
+                <h3>Nowoczesne wejscie do produktu ma redukowac tarcie, a nie dokladac formalnosci.</h3>
+                <p>
+                  Ten blok porzadkuje droge uzytkownika tak, jak robi to dobry onboarding SaaS:
+                  najpierw sens procesu, potem kroki, na koncu jasny punkt wejscia do narzedzia.
+                </p>
 
-              <div id="loginMessage" class="form-message" aria-live="polite"></div>
+                <div class="onboarding-steps">
+                  <article class="onboarding-step">
+                    <strong>01</strong>
+                    <div>
+                      <span>Profil i dane</span>
+                      <p>Zakladasz konto z danymi, ktore beda potrzebne do identyfikacji i personalizacji workspace.</p>
+                    </div>
+                  </article>
+                  <article class="onboarding-step">
+                    <strong>02</strong>
+                    <div>
+                      <span>Zgody i compliance</span>
+                      <p>Regulamin, prywatnosc i RODO sa czescia flow, a nie ukrytym dodatkiem pod formularzem.</p>
+                    </div>
+                  </article>
+                  <article class="onboarding-step">
+                    <strong>03</strong>
+                    <div>
+                      <span>Wejscie do studia</span>
+                      <p>Po autoryzacji trafiasz od razu do panelu z historia, narzedziami i zapisanym kontekstem pracy.</p>
+                    </div>
+                  </article>
+                </div>
 
-              <form id="loginForm" class="auth-form">
-                <label>
-                  <span>Email albo login</span>
-                  <input id="loginIdentifier" type="text" placeholder="email lub login" required />
-                </label>
-                <label>
-                  <span>Haslo</span>
-                  <div class="inline-field">
-                    <input id="loginPassword" type="password" placeholder="Twoje haslo" required />
-                    <button id="toggleLoginPasswordBtn" class="ghost-button" type="button">Pokaz</button>
+                <div class="onboarding-trust-grid">
+                  <article>
+                    <span>Audio docs</span>
+                    <strong>Warstwa audio dla dokumentow prawnych i zgod.</strong>
+                  </article>
+                  <article>
+                    <span>Fast return</span>
+                    <strong>Powrot do workspace bez gubienia historii i ustawien.</strong>
+                  </article>
+                </div>
+              </article>
+
+              <section class="glass-card access-card access-card-login">
+                <div class="card-top card-top-split">
+                  <div>
+                    <p class="eyebrow">Step 02</p>
+                    <h3>Wroc do panelu bez utraty kontekstu</h3>
+                    <p>Szybka autoryzacja dla uzytkownikow, ktorzy chca wejsc prosto do aktywnego workflow.</p>
                   </div>
-                </label>
-                <button class="primary-button" type="submit">Wejdz do studia</button>
-              </form>
+                  <div class="onboarding-chip-stack">
+                    <span class="onboarding-chip">history restore</span>
+                    <span class="onboarding-chip">panel access</span>
+                  </div>
+                </div>
 
-              <div class="login-panel">
-                <h4>Co laduje sie po autoryzacji</h4>
-                <ul class="feature-list">
-                  <li>ekran postepu okolo 10 sekund</li>
-                  <li>sidebar z ekranami i historia poprzednich czatow</li>
-                  <li>tryb chat, code, review, image, video i voice</li>
-                  <li>panel admina dla odpowiedniego konta</li>
-                </ul>
-              </div>
-            </section>
+                <div id="loginMessage" class="form-message" aria-live="polite"></div>
+
+                <form id="loginForm" class="auth-form">
+                  <label>
+                    <span>Email albo login</span>
+                    <input id="loginIdentifier" type="text" placeholder="email lub login" required />
+                  </label>
+                  <label>
+                    <span>Haslo</span>
+                    <div class="inline-field">
+                      <input id="loginPassword" type="password" placeholder="Twoje haslo" required />
+                      <button id="toggleLoginPasswordBtn" class="ghost-button" type="button">Pokaz</button>
+                    </div>
+                  </label>
+                  <button class="primary-button" type="submit">Wejdz do studia</button>
+                </form>
+
+                <div class="login-panel">
+                  <h4>Co laduje sie po autoryzacji</h4>
+                  <ul class="feature-list">
+                    <li>ekran postepu okolo 10 sekund</li>
+                    <li>sidebar z ekranami i historia poprzednich czatow</li>
+                    <li>tryb chat, code, review, image, video i voice</li>
+                    <li>panel admina dla odpowiedniego konta</li>
+                  </ul>
+                  <div class="access-mini-stats">
+                    <span>Pamiec rozmow</span>
+                    <span>Secure session</span>
+                    <span>Tryb wykonawczy</span>
+                  </div>
+                </div>
+              </section>
+            </div>
           </div>
         </section>
 
-        <section id="prawo" class="legal-section">
+        <section id="prawo" class="legal-section reveal-section">
+          <div class="section-head section-head-split">
+            <div>
+              <p class="eyebrow">Prawo i zasady</p>
+              <h2>Warstwa prawna tez wyglada jak czesc produktu, a nie doklejony aneks.</h2>
+              <p>
+                Regulamin, prywatnosc i prawa uzytkownika dostaja czytelna strukture, skroty znaczeniowe i
+                bezposredni dostep do wersji audio, zeby formalna czesc serwisu nie obnizala odbioru calego produktu.
+              </p>
+            </div>
+            <aside class="section-note legal-note">
+              <strong>Compliance layer</strong>
+              <span>Reguly korzystania • przetwarzanie danych • prawa osoby • audio assist</span>
+            </aside>
+          </div>
+
+          <div class="legal-grid">
           <article class="glass-card legal-card" id="regulamin">
             <div class="legal-top">
               <div>
@@ -295,6 +434,14 @@
                 <button class="audio-button" type="button" data-voice-target="termsText">Audio</button>
                 <button id="stopAudioBtn" class="audio-button ghost" type="button">Stop</button>
               </div>
+            </div>
+            <p class="legal-summary">
+              Co wolno, czego nie wolno i w jakich sytuacjach operator moze ograniczyc dostep do uslugi.
+            </p>
+            <div class="legal-meta-row">
+              <span class="legal-meta-pill">service boundaries</span>
+              <span class="legal-meta-pill">acceptable use</span>
+              <span class="legal-meta-pill">risk controls</span>
             </div>
             <div id="termsText" class="legal-text">
               Regulamin okresla warunki zawarcia, wykonywania oraz rozwiazania relacji uslugowej dotyczacej korzystania z platformy Nexus Informator.
@@ -327,6 +474,14 @@
               <div class="legal-actions">
                 <button class="audio-button" type="button" data-voice-target="privacyText">Audio</button>
               </div>
+            </div>
+            <p class="legal-summary">
+              Jakie dane sa zapisywane, po co sa przetwarzane i jak wyglada model bezpieczenstwa calej platformy.
+            </p>
+            <div class="legal-meta-row">
+              <span class="legal-meta-pill">data scope</span>
+              <span class="legal-meta-pill">security posture</span>
+              <span class="legal-meta-pill">trusted providers</span>
             </div>
             <div id="privacyText" class="legal-text">
               Administratorem danych osobowych jest Dominik Solorz, ul. Piastowska 2/1, 40-005 Katowice,
@@ -362,6 +517,14 @@
                 <button class="audio-button" type="button" data-voice-target="rodoText">Audio</button>
               </div>
             </div>
+            <p class="legal-summary">
+              Skrocona mapa praw uzytkownika: dostep, poprawianie, ograniczenie, sprzeciw i usuniecie danych.
+            </p>
+            <div class="legal-meta-row">
+              <span class="legal-meta-pill">user rights</span>
+              <span class="legal-meta-pill">data requests</span>
+              <span class="legal-meta-pill">retention policy</span>
+            </div>
             <div id="rodoText" class="legal-text">
               Osobie, ktorej dane dotycza, przysluguje prawo dostepu do danych, uzyskania informacji o zasadach ich przetwarzania,
               sprostowania danych nieprawidlowych, uzupelnienia danych niekompletnych, ograniczenia przetwarzania, przeniesienia danych,
@@ -383,59 +546,87 @@
               do minimum niezbednego dla realizowanego celu.
             </div>
           </article>
+          </div>
         </section>
 
-        <section id="blog" class="blog-section">
-          <div class="section-head">
-            <p class="eyebrow">Blog i inspiracje</p>
-            <h2>Strona glowna ma przyciagac nie tylko obietnica, ale i trescia.</h2>
+        <section id="blog" class="blog-section reveal-section">
+          <div class="section-head section-head-split">
+            <div>
+              <p class="eyebrow">Blog i inspiracje</p>
+              <h2>Dol strony tez sprzedaje produkt, bo pokazuje sposob myslenia, nie tylko features.</h2>
+            </div>
+            <aside class="section-note blog-note">
+              <strong>Editorial layer</strong>
+              <span>Case studies • design thinking • AI workflow • onboarding patterns</span>
+            </aside>
           </div>
 
-          <div class="blog-grid">
-            <article class="glass-card blog-card blog-a">
-              <span class="blog-tag">Case study</span>
+          <div class="blog-grid editorial-grid">
+            <article class="glass-card blog-card blog-a blog-card-live">
+              <div class="blog-card-head">
+                <span class="blog-tag"><span class="live-pulse"></span> Case study</span>
+                <span class="blog-read-time">4 min</span>
+              </div>
               <h3>Jak ustawiac prompt, zeby AI nie zgadywalo i nie gubilo sensu</h3>
               <p>Dobre polecenie to nie magia. To jasny cel, kontekst, granice i oczekiwany format odpowiedzi.</p>
+              <a class="inline-link" href="#mozliwosci">Zobacz warstwe kontroli</a>
             </article>
-            <article class="glass-card blog-card blog-b">
-              <span class="blog-tag">Design</span>
+            <article class="glass-card blog-card blog-b blog-card-live">
+              <div class="blog-card-head">
+                <span class="blog-tag"><span class="live-pulse"></span> Design</span>
+                <span class="blog-read-time">3 min</span>
+              </div>
               <h3>Dark dashboard, ktory wyglada jak narzedzie premium, a nie zwykla strona</h3>
               <p>Mocny kontrast, rytm sekcji, glowne CTA i detale w kolorach red, green i blue buduja charakter.</p>
+              <a class="inline-link" href="#start">Wroc do hero</a>
             </article>
-            <article class="glass-card blog-card blog-c">
-              <span class="blog-tag">AI workflow</span>
+            <article class="glass-card blog-card blog-c blog-card-live">
+              <div class="blog-card-head">
+                <span class="blog-tag"><span class="live-pulse"></span> AI workflow</span>
+                <span class="blog-read-time">5 min</span>
+              </div>
               <h3>Jak laczyc chat, kod, obraz i wideo w jednej przestrzeni roboczej</h3>
               <p>Najlepiej przez logiczne rozdzielenie ekranow i wspolna pamiec projektu po stronie backendu.</p>
+              <a class="inline-link" href="#dostep">Przejdz do onboardingu</a>
             </article>
           </div>
         </section>
 
-        <section id="kontakt" class="contact-section">
-          <article class="glass-card contact-card">
+        <section id="kontakt" class="contact-section reveal-section">
+          <article class="glass-card contact-card contact-card-primary">
             <p class="eyebrow">Kontakt</p>
-            <h2>Administrator, sprawy danych i kontakt ogolny</h2>
+            <h2>Kontakt tez jest elementem produktu: jasny, bezposredni i natychmiast czytelny.</h2>
             <p>
-              Jesli chcesz poprawic dane, zglosic problem lub zapytac o zakres
-              przetwarzania, tu sa konkretne dane administratora wskazane przez Ciebie.
+              Jesli chcesz poprawic dane, zglosic problem, zapytac o zakres przetwarzania albo po prostu
+              skontaktowac sie z administratorem, dostajesz czytelne kanaly zamiast surowej listy danych.
             </p>
-          </article>
-          <article class="glass-card contact-grid">
-            <div>
-              <strong>Administrator</strong>
-              <span>Dominik Solorz</span>
+            <div class="contact-response-strip">
+              <span>Administrator</span>
+              <strong>Dominik Solorz</strong>
+              <small>Sprawy danych, kontakt ogolny i obsluga serwisu</small>
             </div>
-            <div>
+          </article>
+          <article class="glass-card contact-grid contact-grid-upgraded">
+            <div class="contact-channel">
               <strong>Adres</strong>
               <span>ul. Piastowska 2/1, 40-005 Katowice</span>
+              <small>Punkt kontaktowy administratora</small>
             </div>
-            <div>
+            <a class="contact-channel" href="tel:+48796731886">
               <strong>Telefon</strong>
-              <a href="tel:+48796731886">796-731-886</a>
-            </div>
-            <div>
+              <span>796-731-886</span>
+              <small>Kontakt bezposredni</small>
+            </a>
+            <a class="contact-channel" href="mailto:Goldservicepoland@gmail.com">
               <strong>Email</strong>
-              <a href="mailto:Goldservicepoland@gmail.com">Goldservicepoland@gmail.com</a>
-            </div>
+              <span>Goldservicepoland@gmail.com</span>
+              <small>Sprawy danych i obsluga serwisu</small>
+            </a>
+            <a class="contact-channel" href="#prawo">
+              <strong>Dokumenty</strong>
+              <span>Regulamin, prywatnosc i RODO</span>
+              <small>Przejdz do sekcji compliance</small>
+            </a>
           </article>
         </section>
       </main>
@@ -507,6 +698,7 @@
           <span>Reszta narzedzi jest nadal dostepna z ekranu glównego i komend glosowych.</span>
         </div>
       </aside>
+      <button id="sidebarOverlay" class="sidebar-overlay" type="button" aria-label="Zamknij menu"></button>
 
       <div class="app-main">
         <header class="app-topbar">
@@ -630,6 +822,14 @@
               <button id="voiceInputBtn" class="audio-button ghost" type="button">Start dyktafonu</button>
             </div>
 
+            <div class="chat-shortcuts" aria-label="Szybkie akcje czatu">
+              <button class="suggestion-chip" type="button" data-chat-shortcut="image">/image</button>
+              <button class="suggestion-chip" type="button" data-chat-shortcut="video">/video</button>
+              <button class="suggestion-chip" type="button" data-chat-shortcut="audio">/audio</button>
+              <button class="suggestion-chip" type="button" data-chat-shortcut="workbench">/workbench</button>
+              <button class="suggestion-chip" type="button" data-chat-shortcut="live">/live</button>
+            </div>
+
             <div id="liveVoiceBanner" class="live-voice-banner hidden" aria-live="polite">
               <strong>Tryb live voice jest aktywny.</strong>
               <span>Asystent czyta odpowiedzi i probuje od razu sluchac po zalogowaniu. Mozesz go wylaczyc jednym kliknieciem.</span>
@@ -646,7 +846,7 @@
             <div class="source-card chat-command-note">
               <strong>Czat jako centrum sterowania</strong>
               <span>Darmowy chat lokalny + akcje obrazu</span>
-              <p>Przyklad: /image minimalistyczne logo premium. Generowanie wideo jest chwilowo wylaczone do czasu podpiecia osobnego API.</p>
+              <p>Przyklad: /image minimalistyczne logo premium, /video krotki teaser, /audio start, /workbench stresc dokument, /live najwazniejsze wiadomosci z Polski.</p>
             </div>
 
             <form id="chatForm" class="composer">
@@ -1289,6 +1489,6 @@
       </div>
     </div>
 
-    <script src="/app.js"></script>
+    <script src="/app.js?v=20260425a"></script>
   </body>
 </html>

@@ -2939,6 +2939,42 @@ async function handleRegister(req, res) {
   }
 }
 
+async function handleGuestSession(req, res) {
+  try {
+    const guestId = `guest_${crypto.randomUUID().replace(/-/g, "").slice(0, 12)}`;
+    const guestUser = {
+      id: crypto.randomUUID(),
+      role: "guest",
+      username: guestId,
+      displayName: "Gosc",
+      firstName: "",
+      lastName: "",
+      email: `${guestId}@guest.local`,
+      passwordHash: "",
+      passwordSalt: "",
+      profile: {},
+      consents: {},
+      aiSettings: baseAiSettings(),
+      integrations: {},
+      createdAt: new Date().toISOString()
+    };
+
+    const users = await readJsonFile(USERS_FILE, []);
+    users.push(guestUser);
+    await writeJsonFile(USERS_FILE, users, { backup: false });
+
+    const session = await createSession(guestUser.id);
+    await createChat(guestUser);
+
+    sendJson(res, 200, {
+      token: session.token,
+      user: sanitizeUser(guestUser)
+    });
+  } catch (error) {
+    sendJson(res, 500, { error: error.message || "Nie udalo sie utworzyc sesji goscia." });
+  }
+}
+
 async function handleLogin(req, res) {
   try {
     const body = await readJsonBody(req);
@@ -3979,49 +4015,96 @@ function detectChatMediaIntent(message) {
   return null;
 }
 
-async function createImageAssetFromChat(user, prompt) {
+async function generateImageWithOpenAiFallback(user, prompt, options = {}) {
   if (!OPENAI_API_KEY) {
-    throw new Error("Brak OPENAI_API_KEY. Generator obrazu z czatu nie jest dostepny.");
+    throw new Error("Brak OPENAI_API_KEY. Generator obrazu nie jest dostepny.");
   }
 
-  const apiResponse = await fetch("https://api.openai.com/v1/images/generations", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${OPENAI_API_KEY}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: IMAGE_MODEL,
-      prompt: buildMediaSafetyPrompt(prompt, "image"),
-      size: "1024x1024",
-      quality: "auto",
-      background: "auto",
-      output_format: "png",
-      user: user.id
-    })
-  });
+  const size = ["1024x1024", "1024x1536", "1536x1024"].includes(options.size)
+    ? options.size
+    : "1024x1024";
+  const quality = ["auto", "low", "medium", "high"].includes(options.quality)
+    ? options.quality
+    : "auto";
 
-  const data = await apiResponse.json();
-  if (!apiResponse.ok) {
-    throw new Error(
-      buildServiceUnavailableMessage(
-        "generowania obrazu z czatu",
-        data.error?.message || "Nie udalo sie wygenerowac obrazu."
-      )
-    );
+  const candidateModels = Array.from(
+    new Set([IMAGE_MODEL, "gpt-image-1", "gpt-image-1.5"].filter(Boolean))
+  );
+
+  let lastErrorMessage = "";
+
+  for (const model of candidateModels) {
+    const apiResponse = await fetch("https://api.openai.com/v1/images/generations", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${OPENAI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model,
+        prompt: buildMediaSafetyPrompt(prompt, "image"),
+        size,
+        quality,
+        background: "auto",
+        output_format: "png",
+        user: user.id
+      })
+    });
+
+    const data = await apiResponse.json().catch(() => ({}));
+    const errorMessage = data?.error?.message || "Nie udalo sie wygenerowac obrazu.";
+
+    if (apiResponse.ok) {
+      const imageData = data.data?.[0]?.b64_json;
+      if (!imageData) {
+        lastErrorMessage = "Brak danych obrazu w odpowiedzi API.";
+        continue;
+      }
+
+      return {
+        imageDataUrl: `data:image/png;base64,${imageData}`,
+        model,
+        size,
+        quality
+      };
+    }
+
+    lastErrorMessage = errorMessage;
+
+    const isAuthOrQuota = [401, 403, 429].includes(apiResponse.status);
+    if (isAuthOrQuota) {
+      throw new Error(
+        buildServiceUnavailableMessage("generowania obrazu", errorMessage)
+      );
+    }
+
+    const canTryNextModel = apiResponse.status >= 500 || /model|unsupported|not found|invalid model/i.test(errorMessage);
+    if (!canTryNextModel) {
+      throw new Error(
+        buildServiceUnavailableMessage("generowania obrazu", errorMessage)
+      );
+    }
   }
 
-  const imageData = data.data?.[0]?.b64_json;
-  if (!imageData) {
-    throw new Error("Brak danych obrazu w odpowiedzi API.");
-  }
+  const [widthRaw, heightRaw] = String(size).split("x");
+  const width = Number(widthRaw) || 1024;
+  const height = Number(heightRaw) || 1024;
+  const safePrompt = buildMediaSafetyPrompt(prompt, "image");
+  const fallbackUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(safePrompt)}?width=${width}&height=${height}&nologo=true&safe=true`;
 
   return {
-    imageDataUrl: `data:image/png;base64,${imageData}`,
-    model: IMAGE_MODEL,
+    imageDataUrl: fallbackUrl,
+    model: "pollinations-fallback",
+    size,
+    quality
+  };
+}
+
+async function createImageAssetFromChat(user, prompt) {
+  return generateImageWithOpenAiFallback(user, prompt, {
     size: "1024x1024",
     quality: "auto"
-  };
+  });
 }
 
 async function createVideoAssetFromChat(user, prompt) {
@@ -4203,12 +4286,13 @@ async function handleChatReply(req, res) {
 
       try {
         const result = await createImageAssetFromChat(user, mediaIntent.prompt);
+        const isFallbackModel = String(result.model || "").includes("fallback");
         assistantMessage = {
           id: crypto.randomUUID(),
           role: "assistant",
           content: "Wygenerowalem obraz bez wychodzenia z czatu. Jesli chcesz, moge teraz przygotowac kolejne warianty, poprawki albo prompt do wideo na bazie tego samego opisu.",
-          source: "openai-image",
-          sourceLabel: "OpenAI image",
+          source: isFallbackModel ? "image-fallback" : "openai-image",
+          sourceLabel: isFallbackModel ? "Image fallback" : "OpenAI image",
           mediaType: "image",
           imageDataUrl: result.imageDataUrl,
           mediaPrompt: mediaIntent.prompt,
@@ -4429,39 +4513,10 @@ async function handleImageGeneration(req, res) {
       return;
     }
 
-    const apiResponse = await fetch("https://api.openai.com/v1/images/generations", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${OPENAI_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: IMAGE_MODEL,
-        prompt: buildMediaSafetyPrompt(prompt, "image"),
-        size,
-        quality,
-        background: "auto",
-        output_format: "png",
-        user: user.id
-      })
+    const result = await generateImageWithOpenAiFallback(user, prompt, {
+      size,
+      quality
     });
-
-    const data = await apiResponse.json();
-    if (!apiResponse.ok) {
-      sendJson(res, apiResponse.status, {
-        error: buildServiceUnavailableMessage(
-          "generowania obrazu",
-          data.error?.message || "Nie udalo sie wygenerowac obrazu."
-        )
-      });
-      return;
-    }
-
-    const imageData = data.data?.[0]?.b64_json;
-    if (!imageData) {
-      sendJson(res, 500, { error: "Brak danych obrazu w odpowiedzi API." });
-      return;
-    }
 
     await logAudit("image_generation", req, {
       userId: user.id,
@@ -4470,10 +4525,10 @@ async function handleImageGeneration(req, res) {
     });
 
     sendJson(res, 200, {
-      imageDataUrl: `data:image/png;base64,${imageData}`,
-      model: IMAGE_MODEL,
-      size,
-      quality
+      imageDataUrl: result.imageDataUrl,
+      model: result.model,
+      size: result.size,
+      quality: result.quality
     });
   } catch (error) {
     sendJson(res, 500, {
@@ -4800,6 +4855,11 @@ async function requestHandler(req, res) {
 
   if (req.method === "POST" && pathname === "/api/login") {
     await handleLogin(req, res);
+    return;
+  }
+
+  if (req.method === "POST" && pathname === "/api/guest") {
+    await handleGuestSession(req, res);
     return;
   }
 
